@@ -36,9 +36,17 @@ CUT = "\033[K"
 CC		:= gcc
 FLAGS	:= -g -Wall -Wextra -Werror #-g -fsanitize=address
 
-LEM_IN_SRCS_FILES		:=	checker_main.c \
-							ft_checker_check_order.c \
-							ft_issort_final.c \
+LEM_IN_SRCS_FILES		:=	check_list_have_next.c \
+							check_room_are_impasse.c \
+							check_room_have_next.c \
+							ft_ants_print.c \
+							ft_exit_prog.c \
+							ft_find_first_new_lroom.c \
+							ft_get_all_new_lroom.c \
+							ft_move_ants.c \
+							ft_solution.c \
+							ft_sort_ants.c\
+							main.c \
 
 LEM_IN_HEADERS_FILES	:=	lem_in.h
 
