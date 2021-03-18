@@ -119,27 +119,52 @@ void		ft_solution_begin(t_map *the_map)
 **		répétez
 */
 
+void	ft_clean_lroom(t_lroom *lroom)
+{
+	while(lroom)
+	{
+		lroom->room = NULL;
+		lroom = lroom->next;
+	}
+}
+
+int	ft_lroom_next_to_lroom_actual(t_lroom *actual_lroom, t_lroom *next_lroom)
+{
+
+	while (actual_lroom && actual_lroom->room)
+	{
+		if (ft_add_in_lroom(next_lroom, actual_lroom->room) == ERROR_MEMORY)
+			return (ERROR_MEMORY);
+		actual_lroom = actual_lroom->next;
+	}
+	ft_clean_lroom(next_lroom);
+	return (NO_ERROR);
+}
+
 void		ft_solution(t_map *the_map)
 {
-	t_lroom	*actual_l_room;
+	t_lroom	*actual_lroom;
 	t_room	*actual_room;
+	t_lroom	*next_lroom;
 
-	actual_l_room = ft_solution_room_end(the_map);
-	the_map->l_room_begin = actual_l_room;
-	while(actual_l_room->room)
+	actual_lroom = ft_solution_room_end(the_map);
+	the_map->l_room_begin = actual_lroom;
+	while(actual_lroom->room)
 	{
-		actual_room = actual_l_room->room;
+		actual_room = actual_lroom->room;
 		while (actual_room)
 		{
+			ft_
 			/**/
 			
 			actual_room = NULL;
-			if (actual_l_room->next)
-			{	actual_l_room = actual_l_room->next;
-				actual_room = actual_l_room->room;
+			if (actual_lroom->next)
+			{
+				actual_lroom = actual_lroom->next;
+				actual_room = actual_lroom->room;
 			}
 		}
-		ft_lroom_next_to_lroom_actual();
+		ft_lroom_next_to_lroom_actual(the_map->l_room_begin, next_lroom);
 	}
 
 }

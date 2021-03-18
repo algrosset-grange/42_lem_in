@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-int	ft_add_in_lroom(t_map *the_map, t_lroom *lroom, t_room *room)
+t_lroom	*ft_add_in_lroom(t_lroom *lroom, t_room *room)
 {
 	t_lroom *actual_lroom;
 
@@ -34,12 +34,12 @@ int	ft_add_in_lroom(t_map *the_map, t_lroom *lroom, t_room *room)
 				return (ERROR_MEMORY);
 			actual_lroom->next->room = room;
 			actual_lroom->next->next = NULL;
-			return (NO_ERROR);
+			return (actual_lroom);
 		}
 	}
 	actual_lroom->room = room;
 	if(actual_lroom->next)
 		actual_lroom->next->room = NULL;
-	return (NO_ERROR);
+	return (actual_lroom);
 	
 }

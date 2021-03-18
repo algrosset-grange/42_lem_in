@@ -17,18 +17,18 @@ static int	ft_browse_room(t_room *room, t_lroom **rendu_actuel_room,
 {
 	int		iterator;
 	t_lroom	*new_lroom;
+	t_lroom	*actual_lroom;
 
+	actual_lroom = *rendu_actuel_room;
 	iterator = 0;
 	while (iterator < room->nb_room_contact)
 	{
 		if (room->contact[iterator].range == condition_and_range[0])
 		{
-			if (new_lroom = (t_lroom *)ft_memalloc(sizeof(t_lroom)) == NULL)
+			if (ft_add_in_lroom(actual_lroom, &(room->contact[iterator])) == ERROR_MEMORY)
 				return (ERROR_MEMORY);
-			(*rendu_actuel_room)->next = new_lroom;
-			rendu_actuel_room = (*rendu_actuel_room)->next;
-			(*rendu_actuel_room)->room = &(room->contact[iterator]);
-			(*rendu_actuel_room)->room->range = condition_and_range[1];
+			actual_lroom = actual_lroom->next;
+			actual_lroom->room->range = condition_and_range[1];
 		}
 		iterator++;
 	}
